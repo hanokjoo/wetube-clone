@@ -30,6 +30,8 @@ javascript가 브라우저에서만 사용되던 것에서 벗어나 그 외의 
 
 Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 구현하게 해주는 프레임워크.
 
+(참고: [https://developer.mozilla.org/ko/docs/Learn/Server-side/Express_Nodejs/Introduction](https://developer.mozilla.org/ko/docs/Learn/Server-side/Express_Nodejs/Introduction))
+
 ### Babel
 
 최신 버전의 javascript를 사용할 수 있게 해주는 컴파일러. NodeJS에서 모든 버전의 javascript가 실행되지 않는데, Babel이 변환시켜준다.
@@ -56,3 +58,13 @@ Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 
 ```
 
 console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
+
+### Express
+
+-   route ([https://expressjs.com/ko/guide/routing.html](https://expressjs.com/ko/guide/routing.html))
+    1. get: GET request에 응답하는 라우트 메소드
+    2. use: middleware를 모든 global 영역으로(request에서 호출) 사용하도록 해준다. express는 코드를 위에서 아래로 읽기 때문에 app.get()보다 위에 두어야 한다.
+-   middleware ([https://expressjs.com/ko/guide/writing-middleware.html](https://expressjs.com/ko/guide/writing-middleware.html))
+    1. request와 response 사이의 software
+    2. 모든 middleware 는 handler(controller)
+    3. (req, res, next) 3개의 argument를 갖는다.
