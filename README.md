@@ -42,6 +42,10 @@ Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 
 
 (참고: [https://www.npmjs.com/package/nodemon](https://www.npmjs.com/package/nodemon))
 
+### morgan
+
+HTTP request 로그 관리를 위한 NodeJS의 middleware (https://github.com/expressjs/morgan)
+
 ## TIL(Today I Learned)
 
 ### package.json 파일에서
