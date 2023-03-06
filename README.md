@@ -46,6 +46,8 @@ Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 
 
 HTTP request 로그 관리를 위한 NodeJS의 middleware (https://github.com/expressjs/morgan)
 
+---
+
 ## TIL(Today I Learned)
 
 ### package.json 파일에서
@@ -63,7 +65,9 @@ HTTP request 로그 관리를 위한 NodeJS의 middleware (https://github.com/ex
 
 console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
 
-### Express
+---
+
+## Express
 
 -   route ([https://expressjs.com/ko/guide/routing.html](https://expressjs.com/ko/guide/routing.html))
     1. get: GET request에 응답하는 라우트 메소드
@@ -73,6 +77,20 @@ console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행
     2. 모든 middleware 는 handler(controller)
     3. (req, res, next) 3개의 argument를 갖는다3. .
 -   router ([https://expressjs.com/ko/4x/api.html#router](https://expressjs.com/ko/4x/api.html#router))
+
     1. 라우터 Object는 미들웨어 및 라우트와 분리된 인스턴스이다. (컨트롤러와 url의 관리를 쉽게 해줌)
     2. 모든 Express 애플리케이션은 앱 라우터가 내장되어 있다.
-    3. 라우터는 미들웨어 자체처럼 동작하므로, app.use()나 다른 라우터의 use()의 argument로 사용할 수 있다.
+    3. 라우터는 미들웨어 자체처럼 동작하므로, app.use()나 다른 라우터의 use()의 argument로 3. 사용할 수 있다.
+
+-   router와 controller를 한 파일에 작성하는 것은 좋지 않다.
+    → 각각 파일로 분리 (라우터에서 컨트롤러를 사용함. 쓰임별로 구분해주기)
+-   export / import 할 때
+
+```jsx
+export default globalRouter;
+	-> import globalRoute(or 다른 이름도 가능) from "./rounters/globalRouter"
+	-> 오직 한 개만 내보낼 수 있음
+export const edit = (req, res) => {};
+	-> import { edit, watch }(꼭 지정된 이름만 가능) from "../controllers/videoController";
+	-> 여러 개 내보낼 수 있음
+```
