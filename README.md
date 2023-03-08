@@ -46,6 +46,10 @@ Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 
 
 HTTP request 로그 관리를 위한 NodeJS의 middleware (https://github.com/expressjs/morgan)
 
+### Pug
+
+template engine (https://github.com/pugjs/pug, [https://pugjs.org/api/getting-started.html](https://pugjs.org/api/getting-started.html))
+
 ---
 
 ## TIL(Today I Learned)
