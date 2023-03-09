@@ -99,7 +99,11 @@ export const edit = (req, res) => {};
 	-> 여러 개 내보낼 수 있음
 ```
 
-## Template Structure
+---
+
+## Pug
+
+### Template Structure
 
 🔽 server.js
 
@@ -115,4 +119,8 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 
 ➡ xx.pug
 
-화면 렌더링을 한다. extend base.pug는 기본틀같은 파일로 include footer 되어있음. 템플릿 안에서 섹션을 만들려면 block을 만든다. block에 넣고 싶은 내용은 각 페이지 pug에서 ‘block 변수명’으로 채운다. xxController에서 받은 변수는 #{ 변수명 }에 채워진다.
+화면 렌더링을 한다. extend base.pug는 기본틀같은 파일. 모든 페이지에 똑같이 적용되는 footer.pug가 include 되어있음. 템플릿 안에서 섹션을 만들려면 block을 만든다. block에 넣고 싶은 내용은 각 페이지 pug에서 ‘block 변수명’으로 채운다. xxController에서 받은 변수는 #{ 변수명 }에 채워진다.
+
+-   -   mixins
+    1. data를 받을 수 있는 partials.
+    2. 적용하기: mixins 폴더 생성 → 반복하고 싶은 aa(mixin명)을 포함한 xx.pug 생성 → 불러오고 싶은 yy.pug에서 include mixins/xx.pug → +aa(받아올 요소)
