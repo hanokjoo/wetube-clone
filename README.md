@@ -98,3 +98,21 @@ export const edit = (req, res) => {};
 	-> import { edit, watch }(꼭 지정된 이름만 가능) from "../controllers/videoController";
 	-> 여러 개 내보낼 수 있음
 ```
+
+## Template Structure
+
+🔽 server.js
+
+특정url에 미들웨어나 함수를 특정한다. 기본url은 “/”이다. app.use()와 비슷.
+
+➡ xxRouter.js
+
+xxRouter = express.get()으로 새로운 Router 객체 생성하고, xxRouter.get(url, controller의 함수명)으로 수행할 컨트롤러를 특정한다.
+
+➡ xxController.js
+
+xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달할 변수명: 값 })
+
+➡ xx.pug
+
+화면 렌더링을 한다. extend base.pug는 기본틀같은 파일로 include footer 되어있음. 템플릿 안에서 섹션을 만들려면 block을 만든다. block에 넣고 싶은 내용은 각 페이지 pug에서 ‘block 변수명’으로 채운다. xxController에서 받은 변수는 #{ 변수명 }에 채워진다.
