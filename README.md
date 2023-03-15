@@ -99,6 +99,9 @@ export const edit = (req, res) => {};
 	-> 여러 개 내보낼 수 있음
 ```
 
+-   app.use(express.urlencoded())
+    서버로 POST 요청을 할 때 form에서 보낸 데이터를 파싱하기 위한 express 미들웨어 사용. router보다 앞에 작성해야 한다.
+
 ---
 
 ## Pug
