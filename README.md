@@ -50,6 +50,16 @@ HTTP request 로그 관리를 위한 NodeJS의 middleware (https://github.com/ex
 
 template engine (https://github.com/pugjs/pug, [https://pugjs.org/api/getting-started.html](https://pugjs.org/api/getting-started.html))
 
+### MongoDB
+
+NoSQL로 분류되는 도큐먼트 지향 데이터베이스 시스템. JSON 형태의 스키마 사용(BSON).
+
+### Mongoose
+
+MongoDB의 ODM(Object Document Mapping, 객체 모델링 도구), 조회한 데이터를 javascript 객체로 바꿔줌.
+
+([https://mongoosejs.com/docs/guide.html](https://mongoosejs.com/docs/guide.html))
+
 ---
 
 ## TIL(Today I Learned)
