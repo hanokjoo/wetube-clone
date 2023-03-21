@@ -112,6 +112,21 @@ export const edit = (req, res) => {};
 -   app.use(express.urlencoded())
     서버로 POST 요청을 할 때 form에서 보낸 데이터를 파싱하기 위한 express 미들웨어 사용. router보다 앞에 작성해야 한다.
 
+-   한 번 render() 한 후 또 render()나 sendStatus()처럼 response를 보내려고 하면 에러 발행
+
+```jsx
+Video.find({}, (error, videos) => {
+    res.render("home", { pageTitle: "Home", videos });
+    res.sendStatus(200);  // 에러 발생
+
+		=> return res.render("home", { pageTitle: "Home", videos });  // 호출 후 함수 종료
+});
+```
+
+![error_cannot_set_headers_after_they_are_sent_to_the_client.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/038d144f-5834-4a58-b356-e38bdc26168e/error_cannot_set_headers_after_they_are_sent_to_the_client.png)
+
+그래서 res.render() 앞에 return이 꼭 필요한 것은 아니지만 클라이언트에 응답 후 함수를 종료해서 실수를 방지하기 위해 붙여준다.
+
 ---
 
 ## Pug
