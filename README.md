@@ -154,4 +154,15 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
     2. 데이터를 받을 수 없음.
 -   mixins
     1. data를 받을 수 있는 partials.
-    2. 적용하기: mixins 폴더 생성 → 반복하고 싶은 aa(mixin명)을 포함한 xx.pug 생성 → 불러오고 싶은 yy.pug에서 include mixins/xx.pug → +aa(받아올 요소)
+    2. 적용하기: mixins 폴더 생성 → 반복하고 싶은 aa(mixin명)을 포함한 xx.pug 생성 → 불러오고 싶은 yy.pug에서 include mixins/xx.pug → +aa(받아올 2. 요소)
+
+[에러 발생 및 해결](https://www.notion.so/af790e79f6c1489c811a27ccb779573e)
+
+---
+
+## Mongoose
+
+-   middleware
+
+1. 비동기 함수가 실행되는 동안 제어가 전달되는 함수(pre 또는 post hook이라고도 함). Express의 Morgan 같은 것.
+2. Model이 생성되기 전에 선언해야 한다. (참고: [https://mongoosejs.com/docs/middleware.html](https://mongoosejs.com/docs/middleware.html))
