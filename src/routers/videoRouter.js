@@ -14,7 +14,7 @@ const videoRouter = express.Router();
 숫자만 입력받는 정규식을 추가하면 "upload"를 id값으로 받아들이지 않으므로 잘 동작함.
 */
 videoRouter.get("/:id([0-9a-f]{24})", watch);
-videoRouter.route("/:id/edit").get(getEdit).post(postEdit);
+videoRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(postEdit);
 videoRouter.route("/upload").get(getUpload).post(postUpload);
 
 export default videoRouter;
