@@ -163,6 +163,9 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 ## Mongoose
 
 -   middleware
+
     1. 비동기 함수가 실행되는 동안 제어가 전달되는 함수(pre 또는 post hook이라고도 함). Express의 Morgan 같은 것.
     2. Model이 생성되기 전에 선언해야 한다. (참고: [https://mongoosejs.com/docs/middleware.html](https://mongoosejs.com/docs/middleware.html))
-    3. pre / post save() hook은 update()나 findOneAndUpdate()에서 실행되지 않음 ⇒ static으로 처리 가능([https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()](<https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()>))
+    3. pre / post save() hook은 update()나 findOneAndUpdate()에서 실행되지 않음 ⇒ static으로 처리 가능([https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()](<https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()>)3. )
+
+-   특별한 이유가 없으면 xxxRemove() 대신 xxxDelete()를 사용하자!
