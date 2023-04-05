@@ -60,6 +60,10 @@ MongoDB의 ODM(Object Document Mapping, 객체 모델링 도구), 조회한 데�
 
 ([https://mongoosejs.com/docs/guide.html](https://mongoosejs.com/docs/guide.html))
 
+### bcrypt
+
+password hashing 해주는 라이브러리. (https://github.com/kelektiv/node.bcrypt.js)
+
 ---
 
 ## TIL(Today I Learned)
