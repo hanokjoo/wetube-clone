@@ -160,8 +160,6 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
     1. data를 받을 수 있는 partials.
     2. 적용하기: mixins 폴더 생성 → 반복하고 싶은 aa(mixin명)을 포함한 xx.pug 생성 → 불러오고 싶은 yy.pug에서 include mixins/xx.pug → +aa(받아올 2. 요소)
 
-[에러 발생 및 해결](https://www.notion.so/af790e79f6c1489c811a27ccb779573e)
-
 ---
 
 ## Mongoose
@@ -173,3 +171,11 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
     3. pre / post save() hook은 update()나 findOneAndUpdate()에서 실행되지 않음 ⇒ static으로 처리 가능([https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()](<https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()>)3. )
 
 -   특별한 이유가 없으면 xxxRemove() 대신 xxxDelete()를 사용하자!
+
+---
+
+[부가 설명](https://www.notion.so/0531364fea0747a08610bd913d60e7ad)
+
+[에러 발생 및 해결](https://www.notion.so/af790e79f6c1489c811a27ccb779573e)
+
+[동작 명령](https://www.notion.so/aa3cdc03be1f460da6263cdadcf85c74)
