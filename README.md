@@ -64,24 +64,9 @@ MongoDB의 ODM(Object Document Mapping, 객체 모델링 도구), 조회한 데�
 
 password hashing 해주는 라이브러리. (https://github.com/kelektiv/node.bcrypt.js)
 
----
+### connect-mongo
 
-## TIL(Today I Learned)
-
-### package.json 파일에서
-
-```json
-"dependencies": {},  // 프로젝트를 실행하기 위한 모듈
-"devDependencies": {}  // 개발자한테 필요한 모듈
-```
-
-```json
-"scripts": {
-    "dev": "nodemon --exec babel-node index.js"
-},
-```
-
-console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
+session 정보를 MongoDB에 저장해서 서버가 재시작해도 정보를 유지할 수 있게 해줌. ([https://www.npmjs.com/package/connect-mongo](https://www.npmjs.com/package/connect-mongo))
 
 ---
 
@@ -171,6 +156,29 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
     3. pre / post save() hook은 update()나 findOneAndUpdate()에서 실행되지 않음 ⇒ static으로 처리 가능([https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()](<https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()>)3. )
 
 -   특별한 이유가 없으면 xxxRemove() 대신 xxxDelete()를 사용하자!
+
+---
+
+## TIL(Today I Learned)
+
+### package.json 파일에서
+
+```json
+"dependencies": {},  // 프로젝트를 실행하기 위한 모듈
+"devDependencies": {}  // 개발자한테 필요한 모듈
+```
+
+```json
+"scripts": {
+    "dev": "nodemon --exec babel-node index.js"
+},
+```
+
+console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
+
+### session과 cookie
+
+The cookie is on the browser. The cookie contains the session ID. The session ID is on the backend.
 
 ---
 
