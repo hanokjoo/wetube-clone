@@ -116,6 +116,9 @@ Video.find({}, (error, videos) => {
 
 그래서 res.render() 앞에 return이 꼭 필요한 것은 아니지만 클라이언트에 응답 후 함수를 종료해서 실수를 방지하기 위해 붙여준다.
 
+-   res.locals
+    미들웨어에서 res.locals.xx 로 변수 선언을 하면 해당 미들웨어를 거친 view(xx.pug)에서 사용할 수 있다.
+
 ---
 
 ## Pug
