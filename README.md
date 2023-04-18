@@ -162,6 +162,21 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 
 ---
 
+## Cookie & Session
+
+## Cookie & Session
+
+-   cookie는 브라우저에 있으며 session ID를 포함한다. session ID는 백엔드에 있다. DB에 저장하지 않으면 서버가 재시작할 때마다 세션 정보들은 사라진다.
+-   동작 순서
+    클라이언트(브라우저)에서 서버에 요청 → 서버가 쿠키 생성 → 응답에 쿠키를 포함해서 줌 → 브라우저에서 쿠키 저장해놓고 서버에 요청할 때마다 함께 보냄 → 서버에서는 이 쿠키로 클라이언트를 구분할 수 있음
+-   cookie 옵션
+    1. Domain: 쿠키가 어디서 왔는지 어디로 가야하는지 알려줌. 브라우저는 domain에 따라 쿠키를 저장함.
+    2. Expires: 쿠키 만료날짜. 만료 날짜를 지정하지 않으면 session cookie가 되고, 브라우저에서 프로그램을 닫거나 PC를 끄면 쿠키도 사라짐.
+    3. Max-Age: 쿠키를 얼마동안 유지할 것 인지(밀리세컨드). 브라우저는 몇십년 켜두더라도 이 기간이 끝나면 쿠키가 만료되어 사라짐.
+    4. secret: 쿠키가 Domain에서 만든 것인지 증명하는데 쓰이는 문구
+
+---
+
 ## TIL(Today I Learned)
 
 ### package.json 파일에서
@@ -178,10 +193,6 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 ```
 
 console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
-
-### session과 cookie
-
-The cookie is on the browser. The cookie contains the session ID. The session ID is on the backend.
 
 ---
 
