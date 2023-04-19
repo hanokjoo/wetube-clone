@@ -181,10 +181,10 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 
 -   OAuth를 사용하여 GitHub ID를 다른 애플리케이션에 연결할 수 있다.
 -   Web application flow: 먼저 Wetube를 OAuth App에 등록한다. ([https://docs.github.com/ko/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps](https://docs.github.com/ko/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps))
-    1. Request a user's GitHub identity
+    1. 사용자의 Github ID 요청
         1. allow_signup: OAuth flow 중에 github 계정을 새로 만들수 있게 할거지 여부.
         2. scope: 유저에게서 얼마나 많은 정보를 읽고 가져올 것인가. “ “(공백)으로 구분됨.
-    2. GitHub가 사용자를 사이트로 다시 리디렉션합니다.
+    2. GitHub가 임시 code와 함께 사용자를 사이트로 다시 리디렉션한다. 이 code을 access token으로 교환한다.
     3. 앱이 사용자의 액세스 토큰을 사용하여 API에 액세스합니다.
 
 ---
