@@ -85,17 +85,32 @@ export const finishGithubLogin = async (req, res) => {
             },
         })
     ).json();
-    console.log(tokenRequest);
     if ("access_token" in tokenRequest) {
         const { access_token } = tokenRequest;
-        const userRequest = await (
-            await fetch("https://api.github.com/user", {
+        const apiUrl = "https://api.github.com";
+        const userData = await (
+            await fetch(`${apiUrl}/user`, {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
                 },
             })
         ).json();
-        console.log(userRequest);
+        const emailData = await (
+            await fetch(`${apiUrl}/user/emails`, {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+        ).json();
+        const email = emailData.find(
+            (email) => email.primary === true && email.verified === true
+        );
+        if (!email) {
+            return res.redirect("/login");
+        }
+        //  해당하는 email이 있을 경우 회원가입 or 로그인
+        //  password로 이미 가입한 회원 email과 동일한 메일주소로 github 로그인 시도하면 어떻게 할 것인가
+        //  통합? or 이미 존재하는 email이라고 알려주기?
     } else {
         return res.redirect("/login");
     }
