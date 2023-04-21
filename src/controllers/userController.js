@@ -102,15 +102,30 @@ export const finishGithubLogin = async (req, res) => {
                 },
             })
         ).json();
-        const email = emailData.find(
+        const emailObj = emailData.find(
             (email) => email.primary === true && email.verified === true
         );
-        if (!email) {
+        if (!emailObj) {
             return res.redirect("/login");
         }
-        //  해당하는 email이 있을 경우 회원가입 or 로그인
-        //  password로 이미 가입한 회원 email과 동일한 메일주소로 github 로그인 시도하면 어떻게 할 것인가
-        //  통합? or 이미 존재하는 email이라고 알려주기?
+        const existingUser = await User.findOne({ email: emailObj.email });
+        if (existingUser) {
+            req.session.loggedIn = true;
+            req.session.user = existingUser;
+            return res.redirect("/");
+        } else {
+            const user = await User.create({
+                email: emailObj.email,
+                username: userData.login,
+                socialOnly: true,
+                password: "",
+                name: userData.name ? userData.name : "Unknown",
+                location: userData.location,
+            });
+            req.session.loggedIn = true;
+            req.session.user = user;
+            return res.redirect("/");
+        }
     } else {
         return res.redirect("/login");
     }
