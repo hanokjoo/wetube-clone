@@ -7,6 +7,7 @@ import {
     postUpload,
     getDelete,
 } from "../controllers/videoController";
+import { protectorMiddleware } from "../middleware";
 
 const videoRouter = express.Router();
 
@@ -15,8 +16,19 @@ const videoRouter = express.Router();
 숫자만 입력받는 정규식을 추가하면 "upload"를 id값으로 받아들이지 않으므로 잘 동작함.
 */
 videoRouter.get("/:id([0-9a-f]{24})", watch);
-videoRouter.route("/:id([0-9a-f]{24})/edit").get(getEdit).post(postEdit);
-videoRouter.route("/:id([0-9a-f]{24})/delete").get(getDelete);
-videoRouter.route("/upload").get(getUpload).post(postUpload);
+videoRouter
+    .route("/:id([0-9a-f]{24})/edit")
+    .all(protectorMiddleware)
+    .get(getEdit)
+    .post(postEdit);
+videoRouter
+    .route("/:id([0-9a-f]{24})/delete")
+    .all(protectorMiddleware)
+    .get(getDelete);
+videoRouter
+    .route("/upload")
+    .all(protectorMiddleware)
+    .get(getUpload)
+    .post(postUpload);
 
 export default videoRouter;
