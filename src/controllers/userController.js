@@ -136,12 +136,31 @@ export const getEdit = (req, res) => {
     return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 export const postEdit = async (req, res) => {
+    const pageTitle = "Edit Profile";
     const {
         session: {
             user: { _id },
         },
         body: { username, email, name, location },
     } = req;
+
+    if (req.session.user.email !== email) {
+        return res.status(400).render("edit-profile", {
+            pageTitle,
+            errorMessage: "You can't change your email.",
+        });
+    }
+
+    if (req.session.user.username !== username) {
+        let user = await User.findOne({ username });
+        if (user) {
+            return res.status(400).render("edit-profile", {
+                pageTitle,
+                errorMessage: "This username is already taken.",
+            });
+        }
+    }
+
     const updateUser = await User.findByIdAndUpdate(
         _id,
         {
