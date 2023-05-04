@@ -189,7 +189,38 @@ export const getChangePassword = (req, res) => {
         pageTitle: "Change Password",
     });
 };
-export const postChagePassword = (req, res) => {
-    return res.redirect("/");
+export const postChagePassword = async (req, res) => {
+    const {
+        session: {
+            user: { _id },
+        },
+        body: { oldPassword, newPassword, newPasswordConfirmation },
+    } = req;
+    if (oldPassword === newPassword) {
+        return res.status(400).render("users/change-password", {
+            pageTitle: "Change Password",
+            errorMessage:
+                "The old password must be different from the new password.",
+        });
+    }
+    const user = await User.findById(_id);
+    const ok = await bycryt.compare(oldPassword, user.password);
+    if (!ok) {
+        return res.status(400).render("users/change-password", {
+            pageTitle: "Change Password",
+            errorMessage: "The current password is incorrect.",
+        });
+    }
+    if (newPassword !== newPasswordConfirmation) {
+        return res.status(400).render("users/change-password", {
+            pageTitle: "Change Password",
+            errorMessage: "The password does not match confirmation.",
+        });
+    }
+    user.password = newPassword;
+    await user.save(); // pre("save")로 password hash해주기 위해 findByIdAndUpdate() 대신 save()을 사용한다.
+    /* 변경 후 login 유지할 때는 필요함. logout하면 session이 destroy 될 것이므로 update할 필요 없음. */
+    //req.session.user.password = user.password;
+    return res.redirect("/users/logout");
 };
 export const see = (req, res) => res.send("See User");
