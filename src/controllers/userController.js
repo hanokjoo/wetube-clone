@@ -142,7 +142,9 @@ export const postEdit = async (req, res) => {
             user: { _id },
         },
         body: { username, email, name, location },
+        file,
     } = req;
+    console.log(file);
 
     if (req.session.user.email !== email) {
         return res.status(400).render("edit-profile", {
