@@ -139,12 +139,11 @@ export const postEdit = async (req, res) => {
     const pageTitle = "Edit Profile";
     const {
         session: {
-            user: { _id },
+            user: { _id, avatarUrl },
         },
         body: { username, email, name, location },
         file,
     } = req;
-    console.log(file);
 
     if (req.session.user.email !== email) {
         return res.status(400).render("edit-profile", {
@@ -170,6 +169,7 @@ export const postEdit = async (req, res) => {
             name,
             email,
             location,
+            avatarUrl: file ? `/${file.path}` : avatarUrl,
         },
         { new: true }
     );
