@@ -68,6 +68,10 @@ password hashing 해주는 라이브러리. (https://github.com/kelektiv/node.bc
 
 session 정보를 MongoDB에 저장해서 서버가 재시작해도 정보를 유지할 수 있게 해줌. ([https://www.npmjs.com/package/connect-mongo](https://www.npmjs.com/package/connect-mongo))
 
+### multer
+
+파일 업로드를 위해 사용되는 multipart/form-data를 다루기 위한 node.js 의 미들웨어. multipart(multipart/form-data)가 아닌 form을 처리하지 않음.([https://www.npmjs.com/package/multer](https://www.npmjs.com/package/multer))
+
 ---
 
 ## Express
