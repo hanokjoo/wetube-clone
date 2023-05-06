@@ -163,6 +163,7 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
     3. pre / post save() hook은 update()나 findOneAndUpdate()에서 실행되지 않음 ⇒ static으로 처리 가능([https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()](<https://mongoosejs.com/docs/api/schema.html#Schema.prototype.static()>)3. )
 
 -   특별한 이유가 없으면 xxxRemove() 대신 xxxDelete()를 사용하자!
+-   populate()를 통해 다른 컬렉션의 문서를 참조할 수 있다.
 
 ---
 
