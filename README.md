@@ -80,6 +80,8 @@ session 정보를 MongoDB에 저장해서 서버가 재시작해도 정보를 �
 
 실무에서는 Webpack을 직접 사용하기보다는 Webpack이 포함된 툴(react, vue 및 기타 프레임워크)을 사용함. 거의 업계 표준임.
 
+Webpack은 new JS → old JS로 변환시켜주는 것이 아니라 이렇게 코드를 변환시켜줄 loader를 실행하는 것. 백엔드에 babel이 있다면 프론트엔드엔 Webpack이 있다.
+
 ([https://webpack.js.org/](https://webpack.js.org/))
 
 쉬운 대체제로는 gulp이 있으나 webpack보다 유용하지는 않음. ([https://gulpjs.com/](https://gulpjs.com/))
