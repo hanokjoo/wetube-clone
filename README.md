@@ -72,6 +72,18 @@ session 정보를 MongoDB에 저장해서 서버가 재시작해도 정보를 �
 
 파일 업로드를 위해 사용되는 multipart/form-data를 다루기 위한 node.js 의 미들웨어. multipart(multipart/form-data)가 아닌 form을 처리하지 않음.([https://www.npmjs.com/package/multer](https://www.npmjs.com/package/multer))
 
+### Webpack
+
+모던 JavaScript 애플리케이션을 위한 정적 모듈 번들러.
+
+모듈 번들러: 웹 애플리케이션을 구성하는 자원(HTML, CSS, Javscript, Images 등)을 모두 각각의 모듈로 보고 이를 조합해서 병합된 하나의 결과물을 만드는 도구.
+
+실무에서는 Webpack을 직접 사용하기보다는 Webpack이 포함된 툴(react, vue 및 기타 프레임워크)을 사용함. 거의 업계 표준임.
+
+([https://webpack.js.org/](https://webpack.js.org/))
+
+쉬운 대체제로는 gulp이 있으나 webpack보다 유용하지는 않음. ([https://gulpjs.com/](https://gulpjs.com/))
+
 ---
 
 ## Express
