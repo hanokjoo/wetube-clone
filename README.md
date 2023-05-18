@@ -181,7 +181,40 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 
 ---
 
-## Cookie & Session
+## Webpack
+
+-   여러 loader를 한 번에 사용할 수 있다. webpack은 뒤에서부터 읽는다.
+    ```jsx
+    // webpack.config.js
+    module.exports = {
+        ...
+        output: {
+            filename: "main.js",
+            path: path.resolve(__dirname, "assets", "js"),
+        },
+        module: {
+            rules: [
+                ...
+                {
+                    test: /\.scss$/,
+                    use: ["style-loader", "css-loader", "sass-loader"],
+                },
+            ],
+        },
+    };
+    ```
+    1. sass-loader: .scss 파일을 브라우저가 이해할 수 있는 .css로 변환
+    2. css-loader: @import, url()등 최신 css 코드를 브라우저가 이해할 수 있는 코드로 변환
+    3. style-loader: 위에서 변환한 css코드를 DOM 내부에 적용
+    4. 변환된 코드는 output에 설정된 파일에 저장됨
+    5. 그 js를
+    ```jsx
+    // base.pug
+    script(*src*="/static/js/main.js")
+    ```
+    를 통해 view에 적용
+
+---
 
 ## Cookie & Session
 
