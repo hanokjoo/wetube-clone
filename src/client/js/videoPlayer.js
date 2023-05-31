@@ -49,12 +49,19 @@ const handleInputVolumeRange = (e) => {
     video.volume = value;
 };
 
+const formatTime = (seconds) => {
+    let startIdx = 11;
+    if (seconds < 60) startIdx = 15;
+    else if (seconds >= 60 && seconds < 3600) startIdx = 14;
+    return new Date(seconds * 1000).toISOString().substring(startIdx, 19);
+};
+
 const handleLoadedMetadata = () => {
-    totalTime.innerText = Math.floor(video.duration);
+    totalTime.innerText = formatTime(Math.floor(video.duration));
 };
 
 const handleTimeUpdate = () => {
-    currentTime.innerText = Math.floor(video.currentTime);
+    currentTime.innerText = formatTime(Math.floor(video.currentTime));
 };
 
 playBtn.addEventListener("click", handlePlayClick);
