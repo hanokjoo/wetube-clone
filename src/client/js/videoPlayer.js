@@ -117,15 +117,45 @@ const handleMouseMove = () => {
     );
 };
 
+const handleKeyUp = (e) => {
+    switch (e.code) {
+        case "Space":
+            handlePlayClick();
+            e.preventDefault();
+            break;
+        case "KeyM":
+            handleMuteClick();
+            break;
+        case "Enter":
+            handleFullscreen();
+            break;
+        case "ArrowLeft":
+            video.currentTime -= 5;
+            break;
+        case "ArrowRight":
+            video.currentTime += 5;
+            break;
+    }
+    handleMouseMove();
+};
+
+const handlePlayEnded = () => {
+    video.currentTime = 0;
+    video.pause();
+    playBtnIcon.classList = "fas fa-play";
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleInputVolumeRange);
 volumeRange.addEventListener("change", handleChangeVolumeRange);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
-video.addEventListener("mousemove", handleMouseMove);
+video.addEventListener("click", handlePlayClick);
+video.addEventListener("ended", handlePlayEnded);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 timeline.addEventListener("input", handleTimelineChange);
 timeline.addEventListener("mousedown", handleTimelineMouseDown);
 timeline.addEventListener("mouseup", handleTimelineMouseUp);
 fullScreenBtn.addEventListener("click", handleFullscreen);
+document.addEventListener("keyup", handleKeyUp);
