@@ -144,8 +144,8 @@ const handlePlayEnded = () => {
     video.pause();
     playBtnIcon.classList = "fas fa-play";
 
-    const { id } = videoContainer.dataset;
-    fetch(`/api/videos/${id}/view`, {
+    const { videoid } = videoContainer.dataset;
+    fetch(`/api/videos/${videoid}/view`, {
         method: "POST",
     });
 };
