@@ -1,7 +1,7 @@
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
-let stream;
+let stream, recorder;
 
 const init = async () => {
     stream = await navigator.mediaDevices.getUserMedia({
@@ -17,23 +17,24 @@ const handleStartRecording = () => {
     startBtn.removeEventListener("click", handleStartRecording);
     startBtn.addEventListener("click", handleStopRecording);
 
-    const recorder = new MediaRecorder(stream);
-    recorder.ondataavailable = (e) => {
-        console.log("recording done");
-        console.log(e);
-        console.log(e.data);
+    recorder = new MediaRecorder(stream);
+    recorder.ondataavailable = (event) => {
+        // 녹화한 영상파일(브라우저의 메모리)을 가르키는 URL, 서버엔 없음
+        const videoFile = URL.createObjectURL(event.data);
+        video.srcObject = null;
+        video.src = videoFile;
+        video.loop = true;
+        video.play();
     };
-    console.log(recorder);
     recorder.start();
-    setTimeout(() => {
-        recorder.stop();
-    }, 5000);
 };
 const handleStopRecording = () => {
-    startBtn.innerText = "Start Recording";
+    startBtn.innerText = "Download Recording";
     startBtn.removeEventListener("click", handleStopRecording);
-    startBtn.addEventListener("click", handleStartRecording);
+    startBtn.addEventListener("click", handleDownload);
+    recorder.stop();
 };
+const handleDownload = () => {};
 
 init();
 startBtn.addEventListener("click", handleStartRecording);
