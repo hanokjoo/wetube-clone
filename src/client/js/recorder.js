@@ -4,6 +4,7 @@ const video = document.getElementById("preview");
 let stream, recorder, videoFile;
 
 const init = async () => {
+    startBtn.innerText = "Start Recording";
     stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: true,
@@ -40,6 +41,12 @@ const handleDownload = () => {
     a.download = "MyRecording.webm";
     document.body.appendChild(a);
     a.click();
+
+    video.pause();
+    video.src = "";
+    document.body.removeChild(a);
+    stream.removeTrack(stream.getTracks()[0]);
+    init();
 };
 
 init();
