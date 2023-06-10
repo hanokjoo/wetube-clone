@@ -55,8 +55,10 @@ const handleDownload = async () => {
 
     const mp4File = ffmpeg.FS("readFile", "output.mp4");
     const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg");
+
     const mp4Blob = new Blob([mp4File.buffer], { type: "video/mp4" });
     const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
+
     const mp4Url = URL.createObjectURL(mp4Blob);
     const thumbUrl = URL.createObjectURL(thumbBlob);
 
@@ -72,9 +74,18 @@ const handleDownload = async () => {
     document.body.appendChild(thumbA);
     thumbA.click();
 
+    ffmpeg.FS("unlink", "recording.webm");
+    ffmpeg.FS("unlink", "output.mp4");
+    ffmpeg.FS("unlink", "thumbnail.jpg");
+
+    URL.revokeObjectURL(mp4Url);
+    URL.revokeObjectURL(thumbUrl);
+    URL.revokeObjectURL(videoFile);
+
     video.pause();
     video.src = "";
     document.body.removeChild(a);
+    document.body.removeChild(thumbA);
     stream.removeTrack(stream.getTracks()[0]);
     init();
 };
