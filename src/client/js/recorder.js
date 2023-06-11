@@ -12,20 +12,18 @@ const files = {
 };
 
 const init = async () => {
-    actionBtn.innerText = "Start Recording";
     stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
-        video: true,
+        video: { width: 1024, height: 576 },
     });
     video.srcObject = stream;
     video.play();
 };
 
 const handleStartRecording = () => {
-    actionBtn.innerText = "Stop Recording";
+    actionBtn.innerText = "Recording";
+    actionBtn.disabled = true;
     actionBtn.removeEventListener("click", handleStartRecording);
-    actionBtn.addEventListener("click", handleStopRecording);
-
     recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
     recorder.ondataavailable = (event) => {
         // 녹화한 영상파일(브라우저의 메모리)을 가르키는 URL, 서버엔 없음
@@ -34,14 +32,14 @@ const handleStartRecording = () => {
         video.src = videoFile;
         video.loop = true;
         video.play();
+        actionBtn.innerText = "Download";
+        actionBtn.disabled = false;
+        actionBtn.addEventListener("click", handleDownload);
     };
     recorder.start();
-};
-const handleStopRecording = () => {
-    actionBtn.innerText = "Download Recording";
-    actionBtn.removeEventListener("click", handleStopRecording);
-    actionBtn.addEventListener("click", handleDownload);
-    recorder.stop();
+    setTimeout(() => {
+        recorder.stop();
+    }, 3000);
 };
 const handleDownload = async () => {
     actionBtn.removeEventListener("click", handleDownload);
@@ -83,16 +81,7 @@ const handleDownload = async () => {
     URL.revokeObjectURL(thumbUrl);
     URL.revokeObjectURL(videoFile);
 
-    /*
-    video.pause();
-    video.src = "";
-    document.body.removeChild(a);
-    document.body.removeChild(thumbA);
-    stream.removeTrack(stream.getTracks()[0]);
-    */
-
     actionBtn.disabled = false;
-    init();
     actionBtn.innerText = "Record Again";
     actionBtn.addEventListener("click", handleStartRecording);
 };
