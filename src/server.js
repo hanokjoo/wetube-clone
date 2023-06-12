@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
@@ -41,6 +42,7 @@ app.use(
 );
 
 /* session middleware보다 나중에 있어야 session object에 접근 가능하다. */
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/", rootRouter);
 app.use("/users", userRouter);

@@ -130,6 +130,7 @@ export const finishGithubLogin = async (req, res) => {
 };
 export const logout = (req, res) => {
     req.session.destroy();
+    req.flash("info", "Bye bye!");
     return res.redirect("/");
 };
 export const getEdit = (req, res) => {
@@ -185,6 +186,7 @@ export const postEdit = async (req, res) => {
 };
 export const getChangePassword = (req, res) => {
     if (req.session.user.socialOnly) {
+        req.flash("error", "Can't change password.");
         return res.redirect("/");
     }
     return res.render("users/change-password", {
@@ -223,6 +225,7 @@ export const postChagePassword = async (req, res) => {
     await user.save(); // pre("save")로 password hash해주기 위해 findByIdAndUpdate() 대신 save()을 사용한다.
     /* 변경 후 login 유지할 때는 필요함. logout하면 session이 destroy 될 것이므로 update할 필요 없음. */
     //req.session.user.password = user.password;
+    req.flash("info", "Password updated.");
     return res.redirect("/users/logout");
 };
 export const see = async (req, res) => {
