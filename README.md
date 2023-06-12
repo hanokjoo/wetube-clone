@@ -259,6 +259,38 @@ xxController = (req, res) ⇒ res.render(화면 렌더링할 pug파일, { 전달
 
 console에서 npm run dev를 해서 실행하는 스크립트. nodemon을 실행해서 파일 변경을 감시하고, babel로 컴파일해서 node가 이해하지 못하는 javascript는 변환하라는 의미.
 
+### Data Attributes(데이터 속성)
+
+특정 데이터를 DOM요소에 저장해두기 위해 사용. front-end에서 ‘data-’로 시작하는 속성에 원하는 데이터를 유저한테 보이지 않고 저장할 수 있다. [api view](https://www.notion.so/0531364fea0747a08610bd913d60e7ad?pvs=21)에서 사용함.
+
+(https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes)
+
+### MediaDevices
+
+카메라, 마이크 등 현재 연결된 미디어 입력 장치로의 접근 방법을 제공하는 인터페이스.(https://developer.mozilla.org/ko/docs/Web/API/MediaDevices)
+
+### MediaRecorder
+
+MediaStream Recording API를 제공하여 쉽게 녹화, 녹음을 할 수 있게 해주는 인터페이스.(https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder)
+
+### FFmpeg
+
+오디오 및 비디오를 기록, 변환 및 스트리밍하는 크로스 플랫폼 솔루션.
+
+ffmpeg.wasm: ffmpeg(c언어로 작성됨)를 브라우저에서 사용할 수 있게 해줌.
+
+(https://ffmpeg.org/, https://www.npmjs.com/package/@ffmpeg/ffmpeg)
+
+### WebAssembly
+
+개방형 표준. 프론트엔드에서 매우 빠른 코드를 실행할 수 있게 해줌.
+
+### Express-flash
+
+Express 애플리케이션용 플래시 메시지. 플래시는 플래시 메시지를 정의하고 요청을 리디렉션하지 않고 렌더링할 수 있는 기능이 있는 connect-flash의 확장입니다. session 기반으로 한 유저에게만 보여진다.
+
+(https://www.npmjs.com/package/express-flash)
+
 ---
 
 [부가 설명](https://www.notion.so/0531364fea0747a08610bd913d60e7ad)
