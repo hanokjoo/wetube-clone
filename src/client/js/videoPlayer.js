@@ -117,26 +117,28 @@ const handleMouseMove = () => {
     );
 };
 
-const handleKeyUp = (e) => {
-    switch (e.code) {
-        case "Space":
-            handlePlayClick();
-            e.preventDefault();
-            break;
-        case "KeyM":
-            handleMuteClick();
-            break;
-        case "Enter":
-            handleFullscreen();
-            break;
-        case "ArrowLeft":
-            video.currentTime -= 5;
-            break;
-        case "ArrowRight":
-            video.currentTime += 5;
-            break;
+const handleKeyDown = (e) => {
+    if (e.target === document.body) {
+        switch (e.code) {
+            case "Space":
+                e.preventDefault();
+                handlePlayClick();
+                break;
+            case "KeyM":
+                handleMuteClick();
+                break;
+            case "Enter":
+                handleFullscreen();
+                break;
+            case "ArrowLeft":
+                video.currentTime -= 5;
+                break;
+            case "ArrowRight":
+                video.currentTime += 5;
+                break;
+        }
+        handleMouseMove();
     }
-    handleMouseMove();
 };
 
 const handlePlayEnded = () => {
@@ -163,4 +165,4 @@ timeline.addEventListener("input", handleTimelineChange);
 timeline.addEventListener("mousedown", handleTimelineMouseDown);
 timeline.addEventListener("mouseup", handleTimelineMouseUp);
 fullScreenBtn.addEventListener("click", handleFullscreen);
-document.addEventListener("keyup", handleKeyUp);
+document.body.addEventListener("keydown", handleKeyDown);
