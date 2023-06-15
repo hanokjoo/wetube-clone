@@ -29,6 +29,12 @@ app.use((req, res, next) => {
 
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+/* 
+Express 내장 middleware
+express.text(): request로 전달된 문자열 파싱
+express.json(): request로 전달된 JSON 파싱.
+*/
+app.use(express.json());
 
 app.use(
     session({

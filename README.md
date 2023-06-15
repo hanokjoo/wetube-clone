@@ -291,6 +291,34 @@ Express 애플리케이션용 플래시 메시지. 플래시는 플래시 메시
 
 (https://www.npmjs.com/package/express-flash)
 
+### Express middleware - .text(), .json()
+
+브라우저는 object를 자동으로 string으로 변환하기 때문에 backend에서 이해하게 만들려면 아래와 같이 middleware를 사용해야 한다.
+
+```jsx
+1. 댓글 내용을 단순히 text로 보낼 때
+// commentSection.js
+fetch(`/api/videos/${videoId}/comment`, {
+      method: "POST",
+      body: text,
+  });
+
+// server.js
+app.use(express.text());
+
+2. json으로 보낼 때. 댓글 내용 외 다른 데이터도 보낼 수 있음
+// commentSection.js
+fetch(`/api/videos/${videoId}/comment`, {
+      method: "POST",
+	      headers: { "Content-Type": "application/json" }, // json 보냄을 알려줘야함.
+      body: JSON.stringify({ text }),
+  });
+
+// server.js
+app.use(express.json());
+// string으로 온 데이터를 javascript object로 변환해줌. JSON.parse()처럼.
+```
+
 ---
 
 [부가 설명](https://www.notion.so/0531364fea0747a08610bd913d60e7ad)
