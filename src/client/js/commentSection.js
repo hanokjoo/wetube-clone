@@ -15,24 +15,31 @@ const handleSubmit = async (e) => {
     });
     if (response.status === 201) {
         textarea.value = "";
-        const { newCommentId } = await response.json();
-        addComment(text, newCommentId);
+        const { newCommentId, author } = await response.json();
+        addComment(text, newCommentId, author);
     }
 };
-const addComment = (text, id) => {
+const addComment = (text, id, author) => {
     const videoComments = document.querySelector(".video__comments ul");
+    const div = document.createElement("div");
     const newComment = document.createElement("li");
     newComment.dataset.id = id;
     newComment.className = "video__comment";
     const icon = document.createElement("i");
     icon.className = "fas fa-comment";
     const span = document.createElement("span");
-    span.innerText = ` ${text}`;
+    span.className = "video__comment-author";
+    span.innerText = `${author}`;
     const span2 = document.createElement("span");
-    span2.innerText = "❌";
-    newComment.appendChild(icon);
-    newComment.appendChild(span);
-    newComment.appendChild(span2);
+    span2.innerText = ` ${text}`;
+    const span3 = document.createElement("span");
+    span3.className = "video__comment-delete";
+    span3.innerText = "❌";
+    div.appendChild(icon);
+    div.appendChild(span);
+    div.appendChild(span2);
+    newComment.appendChild(div);
+    newComment.appendChild(span3);
     videoComments.prepend(newComment);
 };
 
