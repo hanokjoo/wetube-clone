@@ -36,6 +36,12 @@ Node web frameworks의 기본 라이브러리. NodeJS를 사용한 웹서버를 
 
 최신 버전의 javascript를 사용할 수 있게 해주는 컴파일러. NodeJS에서 모든 버전의 javascript가 실행되지 않는데, Babel이 변환시켜준다.
 
+### Babel-cli
+
+Babel은 명령줄에서 파일을 컴파일하는 데 사용할 수 있는 내장 CLI와 함께 제공됩니다.
+
+(참고: [https://babeljs.io/docs/en/babel-cli](https://babel.dev/docs/babel-cli))
+
 ### Nodemon
 
 디렉토리의 파일 변경이 감지되면 자동으로 노드 응용 프로그램을 다시 시작하여 Node.js 기반 응용 프로그램을 개발하는 데 도움이 되는 모듈. Node monitoring이라고 생각하면 됨.
