@@ -325,6 +325,31 @@ app.use(express.json());
 // string으로 온 데이터를 javascript object로 변환해줌. JSON.parse()처럼.
 ```
 
+### Deployment 할 때 package.json script
+
+```jsx
+// package.json
+"scripts": {
+		/* start: 서버 시작 */
+        "start": "node build/init.js",
+		/* build: 백엔드 빌드 && 프론트엔드 빌드 */
+        "build": "npm run build:server && npm run build:assets",
+        "build:server": "babel src -d build",
+        "build:assets": "webpack --mode=production",
+        "dev:server": "nodemon",
+        "dev:assets": "webpack --mode=development -w"
+    },
+```
+
+1. start
+    - build/init.js를 시작(=서버를 시작)
+    - dev:sever와 같은 역할을 한다. dev:sever는 nodemon을 실행하는데 nodemon을 보게 되면 babel-node로 src/init.js를 실행한다.
+    - start와 dev:sever의 차이점: start는 babel 없이 init.js를 시작하는데, 이유는 babel이 필요없기 때문이다. build 파일에는 이미 컴파일 된 코드들만 있기 때문이다.
+2. build
+    - build:sever는 src 폴더 안에 있는 파일들을 컴파일 해서 build 폴더에 저장한다.
+    - build:assets와 dev:assets는 둘 다 webpack을 실행시킴
+    - build:assets와 dev:assets의 차이점: build:assets는 production모드로 실행해서 코드를 압축시킨다. dev:assets는 develop 모드로 실행한다. 둘 다 assets에 파일을 저장한다.
+
 ---
 
 [부가 설명](https://www.notion.so/0531364fea0747a08610bd913d60e7ad)
